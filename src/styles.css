@@ -1,1 +1,18 @@
-/* You can add global styles to this file, and also import other style files */
+/* || Importing Bootstrap 5 */
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
+/* || General Styling */
+
+* {
+  font-family: "Inter", sans-serif;
+  margin: 0px auto;
+  background-color: var(--black);
+  color: var(--lightest-purple);
+}
+
+:root {
+  --black: #151515;
+  --purple: #4f3b78;
+  --grey-blue: #3c415c;
+  --lightest-purple: #fbfaff;
+}

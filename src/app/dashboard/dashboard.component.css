@@ -1,0 +1,14 @@
+.form-control {
+  background-color: black;
+}
+
+textarea:focus,
+input:focus {
+  color: var(--lightest-purple);
+}
+
+input,
+select,
+textarea {
+  color: var(--lightest-purple);
+}

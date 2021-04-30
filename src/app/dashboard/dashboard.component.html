@@ -1,0 +1,30 @@
+<div class="container">
+  <form [formGroup]="gitInfoForm" (ngSubmit)="onSubmit()">
+    <fieldset>
+      <legend>GitHub Repository Info</legend>
+      <div class="form-group mb-3">
+        <label for="GitHub Owner" class="form-label">GitHub Owner:</label>
+        <input
+          id="owner"
+          type="text"
+          formControlName="owner"
+          placeholder="k-le"
+          class="form-control"
+        />
+      </div>
+      <div class="form-group mb-3">
+        <label for="repo" class="form-label">GitHub Repository:</label>
+        <input
+          id="repo"
+          type="text"
+          formControlName="repo"
+          placeholder="k-le"
+          class="form-control"
+        />
+      </div>
+      <div>
+        <button class="btn btn-outline-info" type="submit">Search</button>
+      </div>
+    </fieldset>
+  </form>
+</div>
