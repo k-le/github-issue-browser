@@ -14,8 +14,8 @@ import { GitIssue } from '../GitIssue';
 })
 export class DashboardComponent implements OnInit {
   gitInfoForm = this.formBuilder.group({
-    owner: ['', [Validators.required, Validators.minLength(1)]],
-    repo: ['', [Validators.required, Validators.minLength(1)]],
+    owner: ['', [Validators.required]],
+    repo: ['', [Validators.required]],
   });
 
   constructor(
@@ -39,11 +39,10 @@ export class DashboardComponent implements OnInit {
     const gitRepo: string = this.gitInfoForm.value.repo;
 
     if (this.gitInfoForm.valid) {
-      window.alert(`Searching:
-    Owner: ${gitOwner}
-    Repo: ${gitRepo}`);
-      this.router.navigateByUrl(`/issues/${gitOwner}/${gitRepo}`);
       this.gitInfoForm.reset();
+      this.router.navigate(['/issues'], {
+        queryParams: { gitOwner: gitOwner, gitRepo: gitRepo },
+      });
     }
   }
 }

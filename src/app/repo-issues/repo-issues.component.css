@@ -1,0 +1,49 @@
+a {
+  text-decoration: none;
+}
+
+.issue-box {
+  background-color: var(--grey-blue);
+  border-radius: 4px;
+  transition-duration: 200ms;
+}
+
+.issue-box a {
+  color: var(--lightest-purple);
+  display: inline-block;
+  position: relative;
+}
+
+.issue-box a::after {
+  content: "";
+  position: absolute;
+  bottom: 5%;
+  left: 0;
+  width: 100%;
+  height: 0.1rem;
+  background-color: var(--light-purple);
+  opacity: 1;
+  transform: scale(0);
+  transform-origin: center;
+  transition: transform 500ms;
+}
+
+.issue-box a:hover::after,
+.issue-box a:focus::after {
+  transform: scale(1);
+}
+
+.issue-box:hover {
+  background-color: var(--dark-gb);
+  cursor: pointer;
+}
+
+.issue-content {
+  box-sizing: border-box;
+  padding: 8px;
+}
+
+.issue-creator {
+  font-size: 1.25rem;
+  transition: 100ms;
+}

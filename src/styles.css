@@ -6,13 +6,14 @@
 * {
   font-family: "Inter", sans-serif;
   margin: 0px auto;
-  background-color: var(--black);
   color: var(--lightest-purple);
 }
 
 :root {
   --black: #151515;
-  --purple: #4f3b78;
   --grey-blue: #3c415c;
+  --dark-gb: #2d3146;
+  --purple: #4f3b78;
+  --light-purple: #9555cd;
   --lightest-purple: #fbfaff;
 }

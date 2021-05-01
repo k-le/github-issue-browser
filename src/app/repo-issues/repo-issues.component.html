@@ -1,1 +1,23 @@
-<p>repo-issues works!</p>
+<a *ngFor="let issue of gitIssues" [attr.href]="issue.html_url" target="_blank">
+  <div class="container issue-box mt-4">
+    <div class="issue-content">
+      <h2>
+        <a [attr.href]="issue.html_url" target="_blank">{{ issue.title }}</a>
+      </h2>
+      <p class="issue-creator">
+        <a [attr.href]="'https://github.com/' + issue.userLogin" target="_blank"
+          >Creator: {{ issue.userLogin }}</a
+        >
+      </p>
+      <div>
+        <strong>ID: </strong><i>{{ issue.id }}</i>
+      </div>
+      <div>
+        <strong>Number: </strong><i>{{ issue.number }}</i>
+      </div>
+      <div>
+        <strong>State: </strong><i>{{ issue.state }}</i>
+      </div>
+    </div>
+  </div>
+</a>

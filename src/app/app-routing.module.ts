@@ -6,7 +6,7 @@ import { RepoIssuesComponent } from './repo-issues/repo-issues.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
-  { path: 'issues/:owner/:repo', component: RepoIssuesComponent },
+  { path: 'issues', component: RepoIssuesComponent },
 ];
 
 @NgModule({
