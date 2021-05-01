@@ -1,3 +1,5 @@
+import { formatDate } from '@angular/common';
+
 export interface GitIssue {
   html_url: string;
   id: number;
@@ -16,7 +18,7 @@ export const mockIssues: GitIssue[] = [
     title: 'Automate constraints file updates',
     userLogin: 'busunkim96',
     state: 'open',
-    timeCreated: '"2021-01-07T20:43:30Z"',
+    timeCreated: '2021-01-07T20:43:30Z',
   },
   {
     html_url: 'https://github.com/googleapis/google-cloud-python/issues/10521',
@@ -25,7 +27,7 @@ export const mockIssues: GitIssue[] = [
     title: 'Automate constraints file updates',
     userLogin: 'busunkim96',
     state: 'open',
-    timeCreated: '"2021-01-07T20:43:30Z"',
+    timeCreated: '2021-01-09T20:43:30Z',
   },
   {
     html_url: 'https://github.com/googleapis/google-cloud-python/issues/10521',
@@ -34,7 +36,7 @@ export const mockIssues: GitIssue[] = [
     title: 'Automate constraints file updates',
     userLogin: 'busunkim96',
     state: 'open',
-    timeCreated: '"2021-01-07T20:43:30Z"',
+    timeCreated: '2021-01-12T20:43:30Z',
   },
   {
     html_url: 'https://github.com/googleapis/google-cloud-python/issues/10521',
@@ -43,7 +45,7 @@ export const mockIssues: GitIssue[] = [
     title: 'Automate constraints file updates',
     userLogin: 'busunkim96',
     state: 'open',
-    timeCreated: '"2021-01-07T20:43:30Z"',
+    timeCreated: '2021-02-07T20:43:30Z',
   },
   {
     html_url: 'https://github.com/googleapis/google-cloud-python/issues/10521',
@@ -52,6 +54,6 @@ export const mockIssues: GitIssue[] = [
     title: 'Automate constraints file updates',
     userLogin: 'busunkim96',
     state: 'open',
-    timeCreated: '"2021-01-07T20:43:30Z"',
+    timeCreated: '2021-03-22T20:43:30Z',
   },
 ];

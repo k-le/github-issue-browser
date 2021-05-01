@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
-import { Location } from '@angular/common';
+import { formatDate, Location } from '@angular/common';
 import { Subscription } from 'rxjs';
 
 import { GitHubAPIService } from '../git-hub-api.service';
@@ -37,5 +37,9 @@ export class RepoIssuesComponent implements OnInit {
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
+  }
+
+  getFormattedDate(date: string | number): string {
+    return formatDate(date, 'dd MMM yy, h:mm a z', 'en-US');
   }
 }
