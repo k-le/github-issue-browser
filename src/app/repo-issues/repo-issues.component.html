@@ -1,17 +1,17 @@
-<a *ngFor="let issue of gitIssues" [attr.href]="issue.html_url" target="_blank">
-  <div class="container issue-box mt-4">
+<div *ngFor="let issue of gitIssues" class="container issue-box mt-4">
+  <a [attr.href]="issue.html_url" target="_blank">
     <div class="issue-content">
       <h2>
         <a [attr.href]="issue.html_url" target="_blank">{{ issue.title }}</a>
       </h2>
       <p class="issue-creator">
         <a [attr.href]="'https://github.com/' + issue.userLogin" target="_blank"
-          >Creator: {{ issue.userLogin }}</a
+          >Creator: {{ issue.user.login }}</a
         >
       </p>
       <div>
         <strong>Date Created: </strong
-        ><i>{{ getFormattedDate(issue.timeCreated) }}</i>
+        ><i>{{ getFormattedDate(issue.created_at) }}</i>
       </div>
       <div>
         <strong>ID: </strong><i>{{ issue.id }}</i>
@@ -23,5 +23,5 @@
         <strong>State: </strong><i>{{ issue.state }}</i>
       </div>
     </div>
-  </div>
-</a>
+  </a>
+</div>

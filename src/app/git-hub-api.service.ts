@@ -44,16 +44,16 @@ export class GitHubAPIService {
    * @param issueUrl - Endpoint URL of GitHub API to fetch issues from.
    * @returns - Observable of type GitIssue that contains all issues fetched from the repository.
    */
-  // getGitHubIssues(owner: string, repo: string): Observable<GitIssue[]> {
-  //   const repoIssuesUrl: string = this.getIssuesURL(owner, repo);
-  //   return this.http.get<GitIssue[]>(repoIssuesUrl).pipe(
-  //     tap((_) => window.alert(`Fetched issues from /${owner}/${repo}`)),
-  //     catchError(this.handleError<GitIssue[]>('getGitHubIssues', []))
-  //   );
-  // }
-
   getGitHubIssues(owner: string, repo: string): Observable<GitIssue[]> {
-    const issues = of(mockIssues);
-    return issues;
+    const repoIssuesUrl: string = this.getIssuesURL(owner, repo);
+    return this.http.get<GitIssue[]>(repoIssuesUrl).pipe(
+      tap((_) => window.alert(`Fetched issues from /${owner}/${repo}`)),
+      catchError(this.handleError<GitIssue[]>('getGitHubIssues', []))
+    );
   }
+
+  // getGitHubIssues(owner: string, repo: string): Observable<GitIssue[]> {
+  //   const issues = of(mockIssues);
+  //   return issues;
+  // }
 }
