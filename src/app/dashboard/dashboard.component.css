@@ -2,6 +2,13 @@
   background-color: black;
 }
 
+.form-label.required:after {
+  color: #d00;
+  content: "*";
+  position: relative;
+  margin-left: 1px;
+}
+
 textarea:focus,
 input:focus {
   color: var(--lightest-purple);

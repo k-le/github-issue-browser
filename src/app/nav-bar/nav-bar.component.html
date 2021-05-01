@@ -7,12 +7,14 @@
     <div class="collapse navbar-collapse">
       <ul ngbNav #nav="ngbNav" class="navbar-nav">
         <li ngbNavItem class="nav-item">
-          <a ngbNavLink href="#" class="nav-link">First</a>
+          <a ngbNavLink routerLink="/dashboard" class="nav-link">Dashboard</a>
         </li>
         <li ngbNavItem class="nav-item">
-          <a ngbNavLink href="#" class="nav-link">Second</a>
+          <a ngbNavLink routerLink="" class="nav-link">Second</a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
+
+<router-outlet></router-outlet>

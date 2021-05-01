@@ -18,7 +18,7 @@ export class GitHubAPIService {
    * @param repo Designated GitHub repository.
    * @returns Endpoint URL of GitHub API to fetch data from.
    */
-  getIssuesURL(owner: string, repo: string): string {
+  private getIssuesURL(owner: string, repo: string): string {
     const repoIssuesURL: string = `https://api.github.com/repos/${owner}/${repo}/issues`;
     return repoIssuesURL;
   }
@@ -28,7 +28,8 @@ export class GitHubAPIService {
    * @param issueUrl Endpoint URL of GitHub API to fetch issues from.
    * @returns Observable of type GitIssue that contains all issues fetched from the repository.
    */
-  getGitHubIssues(issueUrl: string): Observable<GitIssue[]> {
-    return this.http.get<GitIssue[]>(issueUrl);
+  getGitHubIssues(owner: string, repo: string): Observable<GitIssue[]> {
+    const repoIssuesUrl: string = this.getIssuesURL(owner, repo);
+    return this.http.get<GitIssue[]>(repoIssuesUrl);
   }
 }
