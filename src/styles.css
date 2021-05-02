@@ -9,10 +9,17 @@
   color: var(--lightest-purple);
 }
 
+body {
+  background-color: (--black);
+}
+
 :root {
   --black: #151515;
-  --grey-blue: #3c415c;
   --dark-gb: #2d3146;
+  --grey-blue: #3c415c;
+  --light-gb: #626cb3;
+  --lightest-gb: #8499de;
+  --dark-purple: #281b43;
   --purple: #4f3b78;
   --light-purple: #9555cd;
   --lightest-purple: #fbfaff;

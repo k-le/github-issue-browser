@@ -20,6 +20,7 @@ export class RepoIssuesComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private location: Location,
+    private router: Router,
     private gitAPIService: GitHubAPIService
   ) {}
 
@@ -39,7 +40,21 @@ export class RepoIssuesComponent implements OnInit {
     this.subscription.unsubscribe();
   }
 
+  /**
+   * Formats a date-time string/number into custom date format.
+   * @param date - The date-time string or number to be formatted.
+   */
   getFormattedDate(date: string | number): string {
     return formatDate(date, 'dd MMM yy, h:mm a z', 'en-US');
+  }
+
+  openDetails(issueNum: number): void {
+    this.router.navigate([`/issues/detail`], {
+      queryParams: {
+        gitOwner: this.gitOwner,
+        gitRepo: this.gitRepo,
+        issueNum: issueNum,
+      },
+    });
   }
 }

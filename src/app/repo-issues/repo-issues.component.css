@@ -16,34 +16,29 @@ a {
 .issue-content {
   box-sizing: border-box;
   padding: 8px;
+  z-index: 5;
 }
 
-.issue-content a {
-  color: var(--lightest-purple);
-  display: inline-block;
-  position: relative;
+.issue-content h4 {
+  color: var(--lightest-gb);
 }
 
-.issue-content a::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 0.1rem;
-  background-color: var(--light-purple);
-  opacity: 1;
-  transform: scale(0);
-  transform-origin: center;
-  transition: transform 500ms;
-}
-
-.issue-content a:hover::after,
-.issue-content a:focus::after {
-  transform: scale(1);
+.issue-number {
+  color: var(--light-gb);
+  font-size: 1.3rem;
+  font-style: italic;
 }
 
 .issue-creator {
-  font-size: 1.25rem;
+  color: var(--lightest-gb);
+  font-size: 1.2rem;
   transition: 100ms;
+}
+
+.issue-open {
+  color: darken(green);
+}
+
+.issue-closed {
+  color: darken(red);
 }

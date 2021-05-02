@@ -1,0 +1,63 @@
+a {
+  text-decoration: none;
+}
+
+.content-heading {
+  box-sizing: border-box;
+  padding: 8px 0px;
+}
+
+.content-heading a,
+.comment-content a {
+  color: var(--lightest-gb);
+  display: inline-block;
+  position: relative;
+}
+
+.content-heading a::after,
+.comment-content a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0.1rem;
+  background-color: var(--light-purple);
+  opacity: 1;
+  transform: scale(0);
+  transform-origin: center;
+  transition: transform 500ms;
+}
+
+.content-heading a:hover::after,
+.content-heading a:focus::after {
+  transform: scale(1);
+}
+
+.issue-number {
+  color: var(--light-gb);
+  font-size: 1.8rem;
+  font-style: italic;
+}
+
+.comment-box {
+  background-color: var(--grey-blue);
+  border-radius: 4px;
+  transition-duration: 200ms;
+}
+
+.comment-box:hover {
+  background-color: var(--dark-gb);
+  cursor: pointer;
+}
+
+.comment-box:hover .comment-content a::after,
+.comment-box:focus .comment-content a::after {
+  transform: scale(1);
+}
+
+.comment-content {
+  box-sizing: border-box;
+  padding: 8px;
+  z-index: 5;
+}

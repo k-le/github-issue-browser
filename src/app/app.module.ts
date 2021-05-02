@@ -10,9 +10,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { AppRoutingModule } from './app-routing.module';
 import { RepoIssuesComponent } from './repo-issues/repo-issues.component';
+import { IssueDetailComponent } from './issue-detail/issue-detail.component';
 
 @NgModule({
-  declarations: [AppComponent, DashboardComponent, NavBarComponent, RepoIssuesComponent],
+  declarations: [AppComponent, DashboardComponent, NavBarComponent, RepoIssuesComponent, IssueDetailComponent],
   imports: [
     BrowserModule,
     FormsModule,

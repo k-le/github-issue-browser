@@ -1,0 +1,37 @@
+<div class="container mt-4">
+  <div class="content-heading">
+    <h2>
+      <a [attr.href]="issue.html_url" target="_blank"> {{ issue.title }}</a>
+      <span class="issue-number"> #{{ issue.number }}</span>
+    </h2>
+    <h5>
+      <a [attr.href]="'https://github.com/' + issue.user.login" target="_blank"
+        >Creator: {{ issue.user.login }}</a
+      >
+    </h5>
+    <hr />
+  </div>
+  <p>
+    <strong>Label: </strong><i>{{ issue.labels[0].name }}</i>
+  </p>
+  <div class="comment-container pb-4">
+    <a
+      *ngFor="let comment of issueComments"
+      [attr.href]="comment.html_url"
+      target="_blank"
+    >
+      <div class="comment-box mb-4">
+        <div class="comment-content">
+          <h5>
+            <a [attr.href]="comment.html_url" target="_blank">{{
+              shortenBody(comment.body)
+            }}</a>
+          </h5>
+          <p>Author: {{ comment.user.login }}</p>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+
+<router-outlet></router-outlet>

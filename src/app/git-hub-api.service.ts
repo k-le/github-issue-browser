@@ -5,6 +5,7 @@ import { Observable, of, throwError } from 'rxjs';
 import { catchError, retry, map, tap } from 'rxjs/operators';
 
 import { GitIssue, mockIssues } from './GitIssue';
+import { IssueComment, mockComments } from './IssueComment';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +17,7 @@ export class GitHubAPIService {
    * Creates the GitHub API URL for a desired GitHub owner and repository.
    * @param owner - Owner of GitHub repository.
    * @param repo - Designated GitHub repository.
-   * @returns Endpoint URL of GitHub API to fetch data from.
+   * @returns - Endpoint URL of GitHub API to fetch data from.
    */
   private getIssuesURL(owner: string, repo: string): string {
     const repoIssuesURL: string = `https://api.github.com/repos/${owner}/${repo}/issues`;
@@ -47,7 +48,7 @@ export class GitHubAPIService {
   getGitHubIssues(owner: string, repo: string): Observable<GitIssue[]> {
     const repoIssuesUrl: string = this.getIssuesURL(owner, repo);
     return this.http.get<GitIssue[]>(repoIssuesUrl).pipe(
-      tap((_) => window.alert(`Fetched issues from /${owner}/${repo}`)),
+      tap((_) => console.log(`Fetched issues from /${owner}/${repo}`)),
       catchError(this.handleError<GitIssue[]>('getGitHubIssues', []))
     );
   }
@@ -55,5 +56,57 @@ export class GitHubAPIService {
   // getGitHubIssues(owner: string, repo: string): Observable<GitIssue[]> {
   //   const issues = of(mockIssues);
   //   return issues;
+  // }
+
+  /**
+   * GET the GitHub issue that corresponds with the issue number.
+   * @param issueNum - The number of the GitHub issue.
+   */
+  getIssue(
+    owner: string,
+    repo: string,
+    issueNum: number
+  ): Observable<GitIssue> {
+    const issueUrl: string = this.getIssuesURL(owner, repo);
+    return this.http.get<GitIssue>(issueUrl + `/${issueNum}`).pipe(
+      tap((_) =>
+        console.log(`Fetched issue from ${owner}/${repo}/${issueNum}`)
+      ),
+      catchError(this.handleError<GitIssue>('getIssue'))
+    );
+  }
+
+  private getCommentsURL(
+    owner: string,
+    repo: string,
+    issueNum: number
+  ): string {
+    const commentsURL: string = `https://api.github.com/repos/${owner}/${repo}/issues/${issueNum}/comments`;
+    return commentsURL;
+  }
+
+  getIssueComments(
+    owner: string,
+    repo: string,
+    issueNum: number
+  ): Observable<IssueComment[]> {
+    const commentsURL: string = this.getCommentsURL(owner, repo, issueNum);
+    return this.http.get<IssueComment[]>(commentsURL).pipe(
+      tap((_) =>
+        console.log(
+          `Fetched comments from ${owner}/${repo}, issue #${issueNum}`
+        )
+      ),
+      catchError(this.handleError<IssueComment[]>('getGitHubIssues', []))
+    );
+  }
+
+  // getIssueComments(
+  //   owner: string,
+  //   repo: string,
+  //   issueNum: number
+  // ): Observable<IssueComment[]> {
+  //   const comments = of(mockComments);
+  //   return comments;
   // }
 }

@@ -1,14 +1,14 @@
-<div *ngFor="let issue of gitIssues" class="container issue-box mt-4">
-  <a [attr.href]="issue.html_url" target="_blank">
+<div class="container py-3">
+  <div
+    *ngFor="let issue of gitIssues"
+    (click)="openDetails(issue.number)"
+    class="container issue-box my-3"
+  >
     <div class="issue-content">
-      <h2>
-        <a [attr.href]="issue.html_url" target="_blank">{{ issue.title }}</a>
-      </h2>
-      <p class="issue-creator">
-        <a [attr.href]="'https://github.com/' + issue.userLogin" target="_blank"
-          >Creator: {{ issue.user.login }}</a
-        >
-      </p>
+      <h4 class="issue-heading">
+        {{ issue.title }}<span class="issue-number"> #{{ issue.number }}</span>
+      </h4>
+      <p class="issue-creator">Creator: {{ issue.user.login }}</p>
       <div>
         <strong>Date Created: </strong
         ><i>{{ getFormattedDate(issue.created_at) }}</i>
@@ -17,11 +17,14 @@
         <strong>ID: </strong><i>{{ issue.id }}</i>
       </div>
       <div>
-        <strong>Number: </strong><i>{{ issue.number }}</i>
-      </div>
-      <div>
-        <strong>State: </strong><i>{{ issue.state }}</i>
+        <strong>State: </strong
+        ><i
+          [ngClass]="issue.state === 'open' ? 'issue-open' : 'issue-closed'"
+          >{{ issue.state }}</i
+        >
       </div>
     </div>
-  </a>
+  </div>
 </div>
+
+<router-outlet></router-outlet>
