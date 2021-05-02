@@ -9,7 +9,7 @@ export interface GitIssue {
   number: number;
   title: string;
   user: { login: string };
-  labels: Labels[];
+  labels?: Labels[];
   state: string;
   created_at: string;
 }

@@ -90,8 +90,9 @@ export class GitHubAPIService {
     repo: string,
     issueNum: number
   ): Observable<IssueComment[]> {
-    const commentsURL: string = this.getCommentsURL(owner, repo, issueNum);
-    return this.http.get<IssueComment[]>(commentsURL).pipe(
+    const commentsUrl: string = this.getCommentsURL(owner, repo, issueNum);
+    window.alert(commentsUrl);
+    return this.http.get<IssueComment[]>(commentsUrl).pipe(
       tap((_) =>
         console.log(
           `Fetched comments from ${owner}/${repo}, issue #${issueNum}`

@@ -32,6 +32,7 @@ export class IssueDetailComponent implements OnInit {
       this.gitRepo = params['gitRepo'];
       this.issueNum = params['issueNum'];
     });
+    window.alert(`${this.gitOwner}, ${this.gitRepo}, ${this.issueNum}`);
     this.getIssue();
     this.getComments();
   }
@@ -42,12 +43,8 @@ export class IssueDetailComponent implements OnInit {
       .subscribe((gitIssue) => (this.issue = gitIssue));
   }
 
-  getType(typeLabel: string): string {
-    return typeLabel.substring(5);
-  }
-
-  getComments(): void {
-    this.gitAPIService
+  getComments(): Subscription {
+    return this.gitAPIService
       .getIssueComments(this.gitOwner, this.gitRepo, this.issueNum)
       .subscribe((comments) => (this.issueComments = comments));
   }
