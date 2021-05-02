@@ -9,12 +9,17 @@
   color: var(--lightest-purple);
 }
 
+html {
+  margin: 0px 0px;
+}
+
 body {
   background-color: (--black);
 }
 
 :root {
   --black: #151515;
+  --darker-gb: #1a1d2d;
   --dark-gb: #2d3146;
   --grey-blue: #3c415c;
   --light-gb: #626cb3;

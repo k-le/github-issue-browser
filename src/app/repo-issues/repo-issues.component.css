@@ -2,6 +2,12 @@ a {
   text-decoration: none;
 }
 
+.issue-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
+}
+
 .issue-box {
   background-color: var(--grey-blue);
   border-radius: 4px;
@@ -19,19 +25,19 @@ a {
   z-index: 5;
 }
 
-.issue-content h4 {
+.issue-content h5 {
   color: var(--lightest-gb);
 }
 
 .issue-number {
   color: var(--light-gb);
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-style: italic;
 }
 
 .issue-creator {
   color: var(--lightest-gb);
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   transition: 100ms;
 }
 
@@ -41,4 +47,32 @@ a {
 
 .issue-closed {
   color: darken(red);
+}
+
+/deep/ .pagination {
+  display: flex;
+  justify-content: center;
+  margin: 0px 0px;
+  padding-bottom: 1rem !important;
+}
+
+/deep/ .pagination a {
+  background-color: var(--dark-gb) !important;
+  color: var(--lightest-purple) !important;
+}
+
+/deep/ .pagination li {
+  margin: 0px 0px;
+}
+
+/deep/ .pagination li.disabled {
+  outline: black !important;
+}
+
+/deep/ .pagination .disabled a span {
+  color: grey !important;
+}
+
+/deep/ .pagination .active {
+  background-color: var(--light-purple) !important;
 }

@@ -1,21 +1,14 @@
-<div class="container py-3">
+<div class="container issue-container py-3">
   <div
-    *ngFor="let issue of gitIssues"
+    *ngFor="let issue of gitIssues | slice: (page - 1) * 10:page * 10"
     (click)="openDetails(issue.number)"
-    class="container issue-box my-3"
+    class="container issue-box"
   >
     <div class="issue-content">
-      <h4 class="issue-heading">
+      <h5 class="issue-heading">
         {{ issue.title }}<span class="issue-number"> #{{ issue.number }}</span>
-      </h4>
+      </h5>
       <p class="issue-creator">Creator: {{ issue.user.login }}</p>
-      <div>
-        <strong>Date Created: </strong
-        ><i>{{ getFormattedDate(issue.created_at) }}</i>
-      </div>
-      <div>
-        <strong>ID: </strong><i>{{ issue.id }}</i>
-      </div>
       <div>
         <strong>State: </strong
         ><i
@@ -23,8 +16,29 @@
           >{{ issue.state }}</i
         >
       </div>
+      <div>
+        <strong>Last Updated: </strong
+        ><i>{{ getFormattedDate(issue.updated_at) }}</i>
+      </div>
+      <div>
+        <strong>Date Created: </strong
+        ><i>{{ getFormattedDate(issue.created_at) }}</i>
+      </div>
+      <div>
+        <strong>No. of Comments: </strong><i>{{ issue.comments }}</i>
+      </div>
+      <div>
+        <strong>ID: </strong><i>{{ issue.id }}</i>
+      </div>
     </div>
   </div>
 </div>
+<ngb-pagination
+  class="ng-pagination"
+  [(page)]="page"
+  [pageSize]="10"
+  [collectionSize]="gitIssues.length"
+  [maxSize]="5"
+></ngb-pagination>
 
 <router-outlet></router-outlet>

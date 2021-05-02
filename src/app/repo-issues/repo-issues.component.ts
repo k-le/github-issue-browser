@@ -12,6 +12,7 @@ import { GitIssue } from '../GitIssue';
   styleUrls: ['./repo-issues.component.css'],
 })
 export class RepoIssuesComponent implements OnInit {
+  page: number = 1;
   gitOwner: string;
   gitRepo: string;
   gitIssues: GitIssue[];
