@@ -46,7 +46,7 @@ export class RepoIssuesComponent implements OnInit {
    * @param date - The date-time string or number to be formatted.
    */
   getFormattedDate(date: string | number): string {
-    return formatDate(date, 'dd MMM yy, h:mm a z', 'en-US');
+    return this.gitAPIService.getFormattedDate(date);
   }
 
   openDetails(issueNum: number): void {
@@ -57,5 +57,13 @@ export class RepoIssuesComponent implements OnInit {
         issueNum: issueNum,
       },
     });
+  }
+
+  getShortenedTextBody(textBody: string): string {
+    if (textBody.length <= 100) {
+      return textBody;
+    } else {
+      return this.gitAPIService.shortenTextBody(textBody, 100) + '...';
+    }
   }
 }

@@ -56,8 +56,17 @@ a {
   transform: scale(1);
 }
 
+.comment-title {
+  font-size: 1.1rem;
+  padding: 0px 0px;
+}
+
 .comment-content {
   box-sizing: border-box;
   padding: 8px;
   z-index: 5;
+}
+
+.comment-content p {
+  margin: 0.25rem auto;
 }

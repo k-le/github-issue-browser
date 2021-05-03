@@ -18,6 +18,8 @@ export class DashboardComponent implements OnInit {
     repo: ['', [Validators.required]],
   });
 
+  showWords: boolean[] = [false, false, false];
+
   constructor(
     private formBuilder: FormBuilder,
     private gitAPIService: GitHubAPIService,
@@ -44,5 +46,14 @@ export class DashboardComponent implements OnInit {
         queryParams: { gitOwner: gitOwner, gitRepo: gitRepo },
       });
     }
+  }
+
+  showWord(): void {
+    let wordIndex = 0;
+    let timerWord = setInterval(() => {
+      this.showWords[wordIndex] = true;
+      wordIndex++;
+    }, 2000);
+    setTimeout(() => clearInterval(timerWord), 7000);
   }
 }

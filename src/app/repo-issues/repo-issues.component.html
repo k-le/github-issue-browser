@@ -6,7 +6,8 @@
   >
     <div class="issue-content">
       <h5 class="issue-heading">
-        {{ issue.title }}<span class="issue-number"> #{{ issue.number }}</span>
+        {{ getShortenedTextBody(issue.title)
+        }}<span class="issue-number"> #{{ issue.number }}</span>
       </h5>
       <p class="issue-creator">Creator: {{ issue.user.login }}</p>
       <div>

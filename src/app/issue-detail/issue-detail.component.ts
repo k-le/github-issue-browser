@@ -32,7 +32,6 @@ export class IssueDetailComponent implements OnInit {
       this.gitRepo = params['gitRepo'];
       this.issueNum = params['issueNum'];
     });
-    window.alert(`${this.gitOwner}, ${this.gitRepo}, ${this.issueNum}`);
     this.getIssue();
     this.getComments();
   }
@@ -49,11 +48,23 @@ export class IssueDetailComponent implements OnInit {
       .subscribe((comments) => (this.issueComments = comments));
   }
 
+  /**
+   * Formats a date-time string/number into custom date format.
+   * @param date - The date-time string or number to be formatted.
+   */
+  getFormattedDate(date: string | number): string {
+    return this.gitAPIService.getFormattedDate(date);
+  }
+
+  goBack(): void {
+    this.location.back();
+  }
+
   shortenBody(commentBody: string): string {
-    if (commentBody.length > 95) {
-      return commentBody.substring(0, 94) + '...';
-    } else {
+    if (commentBody.length <= 250) {
       return commentBody;
+    } else {
+      return this.gitAPIService.shortenTextBody(commentBody, 250) + '...';
     }
   }
 }

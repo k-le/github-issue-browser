@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { formatDate } from '@angular/common';
 
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, retry, map, tap } from 'rxjs/operators';
@@ -45,18 +46,18 @@ export class GitHubAPIService {
    * @param issueUrl - Endpoint URL of GitHub API to fetch issues from.
    * @returns - Observable of type GitIssue that contains all issues fetched from the repository.
    */
-  // getGitHubIssues(owner: string, repo: string): Observable<GitIssue[]> {
-  //   const repoIssuesUrl: string = this.getIssuesURL(owner, repo);
-  //   return this.http.get<GitIssue[]>(repoIssuesUrl).pipe(
-  //     tap((_) => console.log(`Fetched issues from /${owner}/${repo}`)),
-  //     catchError(this.handleError<GitIssue[]>('getGitHubIssues', []))
-  //   );
-  // }
-
   getGitHubIssues(owner: string, repo: string): Observable<GitIssue[]> {
-    const issues = of(mockIssues);
-    return issues;
+    const repoIssuesUrl: string = this.getIssuesURL(owner, repo);
+    return this.http.get<GitIssue[]>(repoIssuesUrl).pipe(
+      tap((_) => console.log(`Fetched issues from /${owner}/${repo}`)),
+      catchError(this.handleError<GitIssue[]>('getGitHubIssues', []))
+    );
   }
+
+  // getGitHubIssues(owner: string, repo: string): Observable<GitIssue[]> {
+  //   const issues = of(mockIssues);
+  //   return issues;
+  // }
 
   /**
    * GET the GitHub issue that corresponds with the issue number.
@@ -85,29 +86,40 @@ export class GitHubAPIService {
     return commentsURL;
   }
 
-  // getIssueComments(
-  //   owner: string,
-  //   repo: string,
-  //   issueNum: number
-  // ): Observable<IssueComment[]> {
-  //   const commentsUrl: string = this.getCommentsURL(owner, repo, issueNum);
-  //   window.alert(commentsUrl);
-  //   return this.http.get<IssueComment[]>(commentsUrl).pipe(
-  //     tap((_) =>
-  //       console.log(
-  //         `Fetched comments from ${owner}/${repo}, issue #${issueNum}`
-  //       )
-  //     ),
-  //     catchError(this.handleError<IssueComment[]>('getGitHubIssues', []))
-  //   );
-  // }
-
   getIssueComments(
     owner: string,
     repo: string,
     issueNum: number
   ): Observable<IssueComment[]> {
-    const comments = of(mockComments);
-    return comments;
+    const commentsUrl: string = this.getCommentsURL(owner, repo, issueNum);
+    return this.http.get<IssueComment[]>(commentsUrl).pipe(
+      tap((_) =>
+        console.log(
+          `Fetched comments from ${owner}/${repo}, issue #${issueNum}`
+        )
+      ),
+      catchError(this.handleError<IssueComment[]>('getGitHubIssues', []))
+    );
+  }
+
+  // getIssueComments(
+  //   owner: string,
+  //   repo: string,
+  //   issueNum: number
+  // ): Observable<IssueComment[]> {
+  //   const comments = of(mockComments);
+  //   return comments;
+  // }
+
+  /**
+   * Formats a date-time string/number into custom date format.
+   * @param date - The date-time string or number to be formatted.
+   */
+  getFormattedDate(date: string | number): string {
+    return formatDate(date, 'dd MMM yy, h:mm a z', 'en-US');
+  }
+
+  shortenTextBody(body: string, length: number): string {
+    return body.substring(0, length);
   }
 }
