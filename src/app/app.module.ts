@@ -12,8 +12,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { RepoIssuesComponent } from './repo-issues/repo-issues.component';
 import { IssueDetailComponent } from './issue-detail/issue-detail.component';
 
+import { AccessGuard } from './access.guard';
+
 @NgModule({
-  declarations: [AppComponent, DashboardComponent, NavBarComponent, RepoIssuesComponent, IssueDetailComponent],
+  declarations: [
+    AppComponent,
+    DashboardComponent,
+    NavBarComponent,
+    RepoIssuesComponent,
+    IssueDetailComponent,
+  ],
   imports: [
     BrowserModule,
     FormsModule,
@@ -22,7 +30,7 @@ import { IssueDetailComponent } from './issue-detail/issue-detail.component';
     NgbModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [AccessGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

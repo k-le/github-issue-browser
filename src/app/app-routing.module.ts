@@ -6,7 +6,11 @@ import { IssueDetailComponent } from './issue-detail/issue-detail.component';
 import { RepoIssuesComponent } from './repo-issues/repo-issues.component';
 
 const routes: Routes = [
-  { path: 'dashboard', component: DashboardComponent },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    data: { requiresLogin: true },
+  },
   { path: 'issues', component: RepoIssuesComponent },
   { path: 'issues/detail', component: IssueDetailComponent },
 ];
