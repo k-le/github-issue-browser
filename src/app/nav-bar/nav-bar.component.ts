@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { OktaAuthService } from '@okta/okta-angular';
+
+import { authCodeFlowConfig } from '../authCodeFlowConfig';
 
 @Component({
   selector: 'app-nav-bar',
@@ -6,17 +9,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./nav-bar.component.css'],
 })
 export class NavBarComponent implements OnInit {
-  loggedIn: boolean = false;
+  isLoggedIn: boolean = false;
 
-  constructor() {}
-
-  ngOnInit(): void {}
-
-  logIn(): void {
-    this.loggedIn = true;
+  constructor(private oktaAuthService: OktaAuthService) {
+    this.oktaAuthService.$authenticationState.subscribe(
+      (isLoggedIn: boolean) => (this.isLoggedIn = isLoggedIn)
+    );
   }
 
-  logOut(): void {
-    this.loggedIn = false;
+  async ngOnInit(): Promise<void> {
+    this.isLoggedIn = await this.oktaAuthService.isAuthenticated();
+  }
+
+  logIn(): void {
+    this.oktaAuthService.signInWithRedirect();
+  }
+
+  async logOut(): Promise<void> {
+    await this.oktaAuthService.signOut();
   }
 }

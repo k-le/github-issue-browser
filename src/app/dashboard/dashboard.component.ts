@@ -47,13 +47,4 @@ export class DashboardComponent implements OnInit {
       });
     }
   }
-
-  showWord(): void {
-    let wordIndex = 0;
-    let timerWord = setInterval(() => {
-      this.showWords[wordIndex] = true;
-      wordIndex++;
-    }, 2000);
-    setTimeout(() => clearInterval(timerWord), 7000);
-  }
 }

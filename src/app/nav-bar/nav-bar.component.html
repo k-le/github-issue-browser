@@ -9,16 +9,15 @@
         >Dashboard</a
       >
       <a
-        *ngIf="!loggedIn"
+        *ngIf="!isLoggedIn"
         ngbNavLink
         [ngbNavItem]="3"
-        routerLink=""
         class="nav-link ms-auto"
         (click)="logIn()"
-        >Log In</a
+        >Login with GitHub</a
       >
       <a
-        *ngIf="loggedIn"
+        *ngIf="isLoggedIn"
         ngbNavLink
         [ngbNavItem]="4"
         routerLink=""
