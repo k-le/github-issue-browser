@@ -1,5 +1,3 @@
-import { mockIssues } from './GitIssue';
-
 export interface IssueComment {
   html_url: string;
   user: { login: string };

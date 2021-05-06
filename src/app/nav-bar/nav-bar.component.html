@@ -5,25 +5,10 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div ngbNav #nav="ngbNav" class="collapse navbar-collapse navbar-nav">
-      <a ngbNavLink [ngbNavItem]="1" routerLink="/dashboard" class="nav-link"
-        >Dashboard</a
-      >
-      <a
-        *ngIf="!isLoggedIn"
-        ngbNavLink
-        [ngbNavItem]="3"
-        class="nav-link ms-auto"
-        (click)="logIn()"
-        >Login with GitHub</a
-      >
-      <a
-        *ngIf="isLoggedIn"
-        ngbNavLink
-        [ngbNavItem]="4"
-        routerLink=""
-        class="nav-link ms-auto"
-        (click)="logOut()"
-        >Log Out</a
+      <a ngbNavLink ngbNavItem routerLink="" class="nav-link">Home</a>
+      <a ngbNavLink ngbNavItem routerLink="/about" class="nav-link">About</a>
+      <a ngbNavLink ngbNavItem routerLink="/search" class="nav-link"
+        >Search for Issues</a
       >
     </div>
   </div>
