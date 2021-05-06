@@ -12,7 +12,11 @@ import { GitIssue } from '../GitIssue';
   styleUrls: ['./repo-issues.component.css'],
 })
 export class RepoIssuesComponent implements OnInit {
+  // Current page number for pagination. Starts at page 1.
   page: number = 1;
+
+  // Number of items per page. Starts at 10 items per page.
+  pageSize: number = 6;
   gitOwner: string;
   gitRepo: string;
   gitIssues: GitIssue[];
@@ -65,5 +69,9 @@ export class RepoIssuesComponent implements OnInit {
     } else {
       return this.gitAPIService.shortenTextBody(textBody, 100) + '...';
     }
+  }
+
+  changePageSize(size: number): void {
+    this.pageSize = size;
   }
 }

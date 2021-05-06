@@ -1,11 +1,51 @@
+<!-- Search Bar for Filtering Issues -->
 <app-issue-search
   [gitOwner]="gitOwner"
   [gitRepo]="gitRepo"
   [issues]="gitIssues"
 ></app-issue-search>
+
+<!-- Dropdown for Issues per Page (Pagination) -->
+<div class="container my-3">
+  <div ngbDropdown class="dropdown">
+    <button class="btn" id="dropdown-pagination" ngbDropdownToggle>
+      Issues per page: {{ pageSize }}
+    </button>
+    <div ngbDropdownMenu aria-labelledby="dropdown-pagination">
+      <button ngbDropdownItem (click)="changePageSize(6)" class="dropdown-item">
+        6
+      </button>
+      <button
+        ngbDropdownItem
+        (click)="changePageSize(20)"
+        class="dropdown-item"
+      >
+        20
+      </button>
+      <button
+        ngbDropdownItem
+        (click)="changePageSize(40)"
+        class="dropdown-item"
+      >
+        40
+      </button>
+      <button
+        ngbDropdownItem
+        (click)="changePageSize(gitIssues.length)"
+        class="dropdown-item"
+      >
+        All
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- List of Git Issues -->
 <div class="container issue-container py-3">
   <div
-    *ngFor="let issue of gitIssues | slice: (page - 1) * 10:page * 10"
+    *ngFor="
+      let issue of gitIssues | slice: (page - 1) * pageSize:page * pageSize
+    "
     (click)="openDetails(issue.number)"
     class="container issue-box"
   >
@@ -39,10 +79,12 @@
     </div>
   </div>
 </div>
+
+<!-- Bootstrap Pagination Component -->
 <ngb-pagination
   class="ng-pagination"
   [(page)]="page"
-  [pageSize]="10"
+  [pageSize]="pageSize"
   [collectionSize]="gitIssues.length"
   [maxSize]="5"
 ></ngb-pagination>

@@ -2,6 +2,12 @@ a {
   text-decoration: none;
 }
 
+#dropdown-pagination,
+.dropdown-item {
+  background-color: var(--grey-blue);
+  color: var(--lightest-gb);
+}
+
 .issue-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
