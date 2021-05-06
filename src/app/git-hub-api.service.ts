@@ -54,11 +54,6 @@ export class GitHubAPIService {
     );
   }
 
-  // getGitHubIssues(owner: string, repo: string): Observable<GitIssue[]> {
-  //   const issues = of(mockIssues);
-  //   return issues;
-  // }
-
   /**
    * GET the GitHub issue that corresponds with the issue number.
    * @param issueNum - The number of the GitHub issue.
@@ -102,14 +97,22 @@ export class GitHubAPIService {
     );
   }
 
-  // getIssueComments(
-  //   owner: string,
-  //   repo: string,
-  //   issueNum: number
-  // ): Observable<IssueComment[]> {
-  //   const comments = of(mockComments);
-  //   return comments;
-  // }
+  searchIssues(term: string, issues: GitIssue[]): Observable<GitIssue[]> {
+    // If we trim the term of all whitespace and it's empty, then we
+    // return an empty GitIssue array.
+    if (!term.trim) {
+      return of([]);
+    }
+    const repoIssuesUrl: string = '';
+    return of(issues).pipe(
+      tap((x) =>
+        x.length
+          ? console.log(`found ${x} issues matching '${term}'`)
+          : console.log(`no issues found matching ${term}`)
+      ),
+      catchError(this.handleError<GitIssue[]>('searchIssues', []))
+    );
+  }
 
   /**
    * Formats a date-time string/number into custom date format.
