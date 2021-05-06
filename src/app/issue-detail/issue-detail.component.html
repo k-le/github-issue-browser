@@ -12,8 +12,12 @@
     </h5>
     <hr />
   </div>
-  <p>
+  <p *ngIf="issue.labels">
     <strong>Label: </strong>
+    <span *ngFor="let label of issue.labels">{{ label.name }} </span>
+    <br />
+    <strong>Description: </strong>
+    <span *ngFor="let label of issue.labels">{{ label.description }} </span>
   </p>
   <div class="comment-container pb-4">
     <h4>Comments:</h4>

@@ -97,14 +97,24 @@ export class GitHubAPIService {
     );
   }
 
+  private matchIssueTitle(element: string, term: string, index, array) {
+    return element.indexOf(term) >= 0;
+  }
+
   searchIssues(term: string, issues: GitIssue[]): Observable<GitIssue[]> {
     // If we trim the term of all whitespace and it's empty, then we
     // return an empty GitIssue array.
     if (!term.trim) {
       return of([]);
     }
-    const repoIssuesUrl: string = '';
-    return of(issues).pipe(
+    const lowerCased: string = term.toLowerCase();
+    return of(
+      issues.filter(
+        (issue) =>
+          issue.title.toLowerCase().indexOf(lowerCased) >= 0 ||
+          String(issue.number).indexOf(lowerCased) >= 0
+      )
+    ).pipe(
       tap((x) =>
         x.length
           ? console.log(`found ${x} issues matching '${term}'`)

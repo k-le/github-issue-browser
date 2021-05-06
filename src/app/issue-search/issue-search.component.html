@@ -1,0 +1,23 @@
+<div class="container pt-3">
+  <form>
+    <label id="search-label" for="search-box" class="form-label"
+      >Issue Search</label
+    >
+    <input
+      #searchBox
+      id="search-box"
+      type="text"
+      placeholder="Filter issues by their title..."
+      (input)="search(searchBox.value)"
+      class="form-control"
+    />
+  </form>
+
+  <ul *ngIf="searchBox.value.length > 0" class="search-result">
+    <li *ngFor="let issue of searchedIssues$ | async">
+      <a (click)="openDetails(issue.number)">
+        #{{ issue.number }}: {{ issue.title }}
+      </a>
+    </li>
+  </ul>
+</div>

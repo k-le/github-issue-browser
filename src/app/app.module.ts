@@ -13,6 +13,7 @@ import { RepoIssuesComponent } from './repo-issues/repo-issues.component';
 import { IssueDetailComponent } from './issue-detail/issue-detail.component';
 import { AboutComponent } from './about/about.component';
 import { HeroComponent } from './hero/hero.component';
+import { IssueSearchComponent } from './issue-search/issue-search.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { HeroComponent } from './hero/hero.component';
     IssueDetailComponent,
     AboutComponent,
     HeroComponent,
+    IssueSearchComponent,
   ],
   imports: [
     BrowserModule,
