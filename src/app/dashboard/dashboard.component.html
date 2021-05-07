@@ -1,7 +1,10 @@
 <div class="container" style="position: relative; top: 50px">
   <form [formGroup]="gitInfoForm" (ngSubmit)="onSubmit()">
     <fieldset>
-      <legend>GitHub Repository Info</legend>
+      <legend style="font-size: 1.75rem; color: var(--lightest-gb)">
+        GitHub Repository Info
+      </legend>
+      <hr />
       <div class="form-group mb-3">
         <label for="GitHub Owner" class="form-label required"
           >GitHub Owner:</label
@@ -27,7 +30,7 @@
           id="repo"
           type="text"
           formControlName="repo"
-          placeholder="k-le"
+          placeholder="github-issue-browser"
           class="form-control"
           required
         />

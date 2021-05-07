@@ -13,7 +13,13 @@
     />
   </form>
 
-  <ul *ngIf="searchBox.value.length > 0" [ngClass]="'search-result'">
+  <ul
+    *ngIf="searchBox.value.length > 0"
+    [ngClass]="[
+      isFocused(searchBox) ? 'show-elem' : 'hide-elem',
+      'search-result'
+    ]"
+  >
     <li *ngFor="let issue of searchedIssues$ | async">
       <a (click)="openDetails(issue.number)">
         #{{ issue.number }}: {{ issue.title }}

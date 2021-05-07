@@ -7,4 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent {
   title = 'IssueBrowser';
+
+  isFocused(elem: HTMLElement): boolean {
+    return elem === document.activeElement;
+  }
 }
