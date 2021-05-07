@@ -1,5 +1,8 @@
 <div class="container mt-4">
+  <!-- Router Back Button -->
   <button (click)="goBack()" class="btn btn-outline-info">Go Back</button>
+
+  <!-- Issue Header -->
   <div class="content-heading">
     <h2>
       <a [attr.href]="issue.html_url" target="_blank"> {{ issue.title }}</a>
@@ -12,15 +15,46 @@
     </h5>
     <hr />
   </div>
-  <p *ngIf="issue.labels">
-    <strong>Label: </strong>
-    <span *ngFor="let label of issue.labels">{{ label.name }} </span>
-    <br />
-    <strong>Description: </strong>
-    <span *ngFor="let label of issue.labels">{{ label.description }} </span>
-  </p>
+
+  <!-- Issue Tags -->
+  <div class="row">
+    <div class="issue-tags col">
+      <div>
+        <strong>State: </strong>
+        <span
+          [ngClass]="issue.state === 'open' ? 'issue-open' : 'issue-closed'"
+        >
+          {{ issue.state }}
+        </span>
+      </div>
+      <div>
+        <strong>Last Updated: </strong>
+        <span>{{ getFormattedDate(issue.updated_at) }}</span>
+      </div>
+      <div>
+        <strong>Date Created: </strong>
+        <span>{{ getFormattedDate(issue.created_at) }}</span>
+      </div>
+      <div>
+        <strong>ID: </strong>
+        <span>{{ issue.id }}</span>
+      </div>
+    </div>
+    <div class="issue-tags col">
+      <p *ngIf="issue.labels">
+        <strong>Description: </strong>
+        <span *ngFor="let label of issue.labels">{{ label.description }} </span>
+        <br />
+        <strong>Label: </strong>
+        <span *ngFor="let label of issue.labels">{{ label.name }} </span>
+      </p>
+    </div>
+  </div>
+  <br />
+
+  <!-- Comment Section -->
   <div class="comment-container pb-4">
-    <h4>Comments:</h4>
+    <h4>Comments: {{ issueComments.length }}</h4>
     <a
       *ngFor="let comment of issueComments"
       [attr.href]="comment.html_url"

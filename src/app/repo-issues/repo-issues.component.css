@@ -6,6 +6,12 @@ a {
 .dropdown-item {
   background-color: var(--grey-blue);
   color: var(--lightest-gb);
+  transition: 100ms;
+}
+
+.dropdown-item:hover {
+  background-color: var(--dark-gb);
+  color: var(--lightest-purple);
 }
 
 .issue-container {
@@ -31,13 +37,18 @@ a {
   z-index: 5;
 }
 
-.issue-content h5 {
+.issue-heading {
+  font-size: 1.2rem;
   color: var(--lightest-gb);
+  max-width: 510px;
   display: inline-block;
   position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
-.issue-content h5::after {
+.issue-heading::after {
   content: "";
   position: absolute;
   bottom: 0;
@@ -51,7 +62,7 @@ a {
   transition: transform 500ms;
 }
 
-.issue-box:hover h5::after {
+.issue-box:hover .issue-heading::after {
   transform: scale(1);
 }
 
@@ -59,12 +70,16 @@ a {
   color: var(--light-gb);
   font-size: 1.2rem;
   font-style: italic;
+  position: relative;
+  bottom: 0.5rem;
 }
 
 .issue-creator {
   color: var(--lightest-gb);
   font-size: 1.1rem;
-  transition: 100ms;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .issue-open {
@@ -74,6 +89,15 @@ a {
 .issue-closed {
   color: darken(red);
 }
+
+.show {
+  visibility: visible;
+}
+.hidden {
+  visibility: hidden;
+}
+
+/* || Pagination Styling */
 
 /deep/ .pagination {
   display: flex;
@@ -101,4 +125,40 @@ a {
 
 /deep/ .pagination .active {
   background-color: var(--light-purple) !important;
+}
+
+/* || Responsive Media */
+
+@media screen and (max-width: 1400px) {
+  .issue-heading {
+    max-width: 500px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .issue-heading,
+  .issue-creator {
+    max-width: 400px;
+  }
+}
+
+@media screen and (max-width: 990px) {
+  .issue-heading,
+  .issue-creator {
+    max-width: 300px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .issue-heading,
+  .issue-creator {
+    max-width: 200px;
+  }
+}
+
+@media screen and (max-width: 574px) {
+  .issue-heading,
+  .issue-creator {
+    max-width: 100px;
+  }
 }

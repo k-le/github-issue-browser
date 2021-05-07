@@ -57,4 +57,8 @@ export class IssueSearchComponent implements OnInit {
       },
     });
   }
+
+  isFocused(elem: HTMLElement): boolean {
+    return elem === document.activeElement;
+  }
 }

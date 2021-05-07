@@ -4,10 +4,18 @@
     <button class="navbar-toggler">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div ngbNav #nav="ngbNav" class="collapse navbar-collapse navbar-nav">
-      <a ngbNavLink ngbNavItem routerLink="" class="nav-link">Home</a>
-      <a ngbNavLink ngbNavItem routerLink="/about" class="nav-link">About</a>
-      <a ngbNavLink ngbNavItem routerLink="/search" class="nav-link"
+    <div class="collapse navbar-collapse navbar-nav">
+      <a
+        [routerLinkActive]="['active']"
+        [routerLink]="['']"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="nav-link"
+        >Home</a
+      >
+      <a
+        [routerLinkActive]="['active']"
+        [routerLink]="['/search']"
+        class="nav-link"
         >Search for Issues</a
       >
     </div>

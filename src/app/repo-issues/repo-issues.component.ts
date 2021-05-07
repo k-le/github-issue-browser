@@ -74,4 +74,8 @@ export class RepoIssuesComponent implements OnInit {
   changePageSize(size: number): void {
     this.pageSize = size;
   }
+
+  isFocused(elem: HTMLElement): boolean {
+    return elem === document.activeElement;
+  }
 }

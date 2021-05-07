@@ -8,12 +8,24 @@
 <!-- Dropdown for Issues per Page (Pagination) -->
 <div class="container my-3">
   <div ngbDropdown class="dropdown">
-    <button class="btn" id="dropdown-pagination" ngbDropdownToggle>
+    <button #dropdownBtn class="btn" id="dropdown-pagination" ngbDropdownToggle>
       Issues per page: {{ pageSize }}
     </button>
-    <div ngbDropdownMenu aria-labelledby="dropdown-pagination">
+    <div
+      *ngIf="isFocused(dropdownBtn)"
+      ngbDropdownMenu
+      aria-labelledby="dropdown-pagination"
+      style="background-color: var(--grey-blue)"
+    >
       <button ngbDropdownItem (click)="changePageSize(6)" class="dropdown-item">
         6
+      </button>
+      <button
+        ngbDropdownItem
+        (click)="changePageSize(10)"
+        class="dropdown-item"
+      >
+        10
       </button>
       <button
         ngbDropdownItem
@@ -46,14 +58,15 @@
     *ngFor="
       let issue of gitIssues | slice: (page - 1) * pageSize:page * pageSize
     "
+    [attr.title]="issue.title"
     (click)="openDetails(issue.number)"
     class="container issue-box"
   >
     <div class="issue-content">
-      <h5 class="issue-heading">
-        {{ getShortenedTextBody(issue.title)
-        }}<span class="issue-number"> #{{ issue.number }}</span>
-      </h5>
+      <span class="issue-heading">
+        {{ getShortenedTextBody(issue.title) }}
+      </span>
+      <span class="issue-number"> #{{ issue.number }}</span>
       <p class="issue-creator">Creator: {{ issue.user.login }}</p>
       <div>
         <strong>State: </strong

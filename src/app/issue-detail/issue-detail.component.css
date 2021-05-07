@@ -1,3 +1,5 @@
+/* || Header Stylings */
+
 a {
   text-decoration: none;
 }
@@ -39,6 +41,23 @@ a {
   font-size: 1.8rem;
   font-style: italic;
 }
+
+/* || Tag Stylings */
+
+.issue-tags {
+  font-size: 1.1rem;
+}
+
+.issue-tags strong {
+  color: var(--lightest-gb);
+}
+
+.issue-tags span {
+  color: var(--lightest-purple);
+  font-style: italic;
+}
+
+/* || Comment Stylings */
 
 .comment-box {
   background-color: var(--grey-blue);
