@@ -1,105 +1,116 @@
-<!-- Search Bar for Filtering Issues -->
-<app-issue-search
-  [gitOwner]="gitOwner"
-  [gitRepo]="gitRepo"
-  [issues]="gitIssues"
-></app-issue-search>
+<section (click)="isFocused(appBody)">
+  <!-- Search Bar for Filtering Issues -->
+  <app-issue-search
+    [gitOwner]="gitOwner"
+    [gitRepo]="gitRepo"
+    [issues]="gitIssues"
+  ></app-issue-search>
 
-<!-- Dropdown for Issues per Page (Pagination) -->
-<div class="container my-3">
-  <div ngbDropdown class="dropdown">
-    <button #dropdownBtn class="btn" id="dropdown-pagination" ngbDropdownToggle>
-      Issues per page: {{ pageSize }}
-    </button>
-    <div
-      *ngIf="isFocused(dropdownBtn)"
-      ngbDropdownMenu
-      aria-labelledby="dropdown-pagination"
-      style="background-color: var(--grey-blue)"
-    >
-      <button ngbDropdownItem (click)="changePageSize(6)" class="dropdown-item">
-        6
-      </button>
+  <!-- Dropdown for Issues per Page (Pagination) -->
+  <div class="container my-3">
+    <div ngbDropdown class="dropdown">
       <button
-        ngbDropdownItem
-        (click)="changePageSize(10)"
-        class="dropdown-item"
+        #dropdownBtn
+        class="btn"
+        id="dropdown-pagination"
+        ngbDropdownToggle
       >
-        10
+        Issues per page: {{ pageSize }}
       </button>
-      <button
-        ngbDropdownItem
-        (click)="changePageSize(20)"
-        class="dropdown-item"
+      <div
+        *ngIf="isFocused(dropdownBtn)"
+        ngbDropdownMenu
+        aria-labelledby="dropdown-pagination"
+        style="background-color: var(--grey-blue)"
       >
-        20
-      </button>
-      <button
-        ngbDropdownItem
-        (click)="changePageSize(40)"
-        class="dropdown-item"
-      >
-        40
-      </button>
-      <button
-        ngbDropdownItem
-        (click)="changePageSize(gitIssues.length)"
-        class="dropdown-item"
-      >
-        All
-      </button>
-    </div>
-  </div>
-</div>
-
-<!-- List of Git Issues -->
-<div class="container issue-container py-3">
-  <div
-    *ngFor="
-      let issue of gitIssues | slice: (page - 1) * pageSize:page * pageSize
-    "
-    [attr.title]="issue.title"
-    (click)="openDetails(issue.number)"
-    class="container issue-box"
-  >
-    <div class="issue-content">
-      <span class="issue-heading">
-        {{ issue.title }}
-      </span>
-      <span class="issue-number"> #{{ issue.number }}</span>
-      <p class="issue-creator">Creator: {{ issue.user.login }}</p>
-      <div>
-        <strong>State: </strong
-        ><i
-          [ngClass]="issue.state === 'open' ? 'issue-open' : 'issue-closed'"
-          >{{ issue.state }}</i
+        <button
+          ngbDropdownItem
+          (click)="changePageSize(6)"
+          class="dropdown-item"
         >
-      </div>
-      <div>
-        <strong>Last Updated: </strong
-        ><i>{{ getFormattedDate(issue.updated_at) }}</i>
-      </div>
-      <div>
-        <strong>Date Created: </strong
-        ><i>{{ getFormattedDate(issue.created_at) }}</i>
-      </div>
-      <div>
-        <strong>No. of Comments: </strong><i>{{ issue.comments }}</i>
-      </div>
-      <div>
-        <strong>ID: </strong><i>{{ issue.id }}</i>
+          6
+        </button>
+        <button
+          ngbDropdownItem
+          (click)="changePageSize(10)"
+          class="dropdown-item"
+        >
+          10
+        </button>
+        <button
+          ngbDropdownItem
+          (click)="changePageSize(20)"
+          class="dropdown-item"
+        >
+          20
+        </button>
+        <button
+          ngbDropdownItem
+          (click)="changePageSize(40)"
+          class="dropdown-item"
+        >
+          40
+        </button>
+        <button
+          ngbDropdownItem
+          (click)="changePageSize(gitIssues.length)"
+          class="dropdown-item"
+        >
+          All
+        </button>
       </div>
     </div>
   </div>
-</div>
 
-<!-- Bootstrap Pagination Component -->
-<ngb-pagination
-  class="ng-pagination"
-  [(page)]="page"
-  [pageSize]="pageSize"
-  [collectionSize]="gitIssues.length"
-  [maxSize]="5"
-></ngb-pagination>
+  <!-- List of Git Issues -->
+  <div #appBody class="container issue-container py-3">
+    <div
+      *ngFor="
+        let issue of gitIssues | slice: (page - 1) * pageSize:page * pageSize
+      "
+      [attr.title]="issue.title"
+      (click)="openDetails(issue.number)"
+      class="container issue-box"
+    >
+      <div class="issue-content">
+        <span class="issue-heading">
+          {{ issue.title }}
+        </span>
+        <span class="issue-number"> #{{ issue.number }}</span>
+        <p class="issue-creator">Creator: {{ issue.user.login }}</p>
+        <div>
+          <strong>State: </strong
+          ><i
+            [ngClass]="issue.state === 'open' ? 'issue-open' : 'issue-closed'"
+            >{{ issue.state }}</i
+          >
+        </div>
+        <div>
+          <strong>Last Updated: </strong
+          ><i>{{ getFormattedDate(issue.updated_at) }}</i>
+        </div>
+        <div>
+          <strong>Date Created: </strong
+          ><i>{{ getFormattedDate(issue.created_at) }}</i>
+        </div>
+        <div>
+          <strong>No. of Comments: </strong><i>{{ issue.comments }}</i>
+        </div>
+        <div>
+          <strong>ID: </strong><i>{{ issue.id }}</i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap Pagination Component -->
+  <ngb-pagination
+    class="ng-pagination"
+    [(page)]="page"
+    [pageSize]="pageSize"
+    [collectionSize]="gitIssues.length"
+    [maxSize]="5"
+  ></ngb-pagination>
+</section>
 
 <router-outlet></router-outlet>
